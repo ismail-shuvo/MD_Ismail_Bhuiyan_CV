@@ -68,15 +68,30 @@ export default async function Home() {
           </p>
         </section>
 
-        {/* Skills */}
+        {/* Skills & Certifications */}
         <FadeSection delay={0}>
-          <Section title="Skills" delay="stagger-2">
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-              {cv.skills.map((skill, i) => (
-                <span key={i} className="tag">{skill}</span>
-              ))}
-            </div>
-          </Section>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1px 1fr', gap: '0 3rem' }}>
+            <Section title="Skills" delay="stagger-2">
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                {cv.skills.map((skill, i) => (
+                  <span key={i} className="tag">{skill}</span>
+                ))}
+              </div>
+            </Section>
+
+            {/* Vertical divider */}
+            <div style={{ background: 'var(--border)', width: 1 }} />
+
+            <Section title="Certifications" delay="stagger-2">
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                {cv.certifications.map((cert, i) => (
+                  <span key={i} style={{ background: 'var(--accent-soft)', color: 'var(--accent)', border: '1px solid #270081', borderRadius: 4, padding: '16px 40px', fontSize: 20, fontWeight: 500 }}>
+                    {cert}
+                  </span>
+                ))}
+              </div>
+            </Section>
+          </div>
         </FadeSection>
 
         {/* Experience */}
@@ -138,35 +153,18 @@ export default async function Home() {
           </Section>
         </FadeSection>
 
-        {/* Education & Certs */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1px 1fr', gap: '0 3rem' }}>
-          <FadeSection delay={300}>
-            <Section title="Education" delay="stagger-5">
-              {cv.education.map((edu, i) => (
-                <div key={i}>
-                  <h3 style={{ fontSize: 15, fontWeight: 500, color: 'var(--ink)', marginBottom: 4 }}>{edu.degree}</h3>
-                  <p style={{ fontSize: 13, color: 'var(--accent)', marginBottom: 2 }}>{edu.institution}</p>
-                  <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--ink-faint)' }}>{edu.period} · {edu.location}</p>
-                </div>
-              ))}
-            </Section>
-          </FadeSection>
-
-          {/* Vertical divider */}
-          <div style={{ background: 'var(--border)', width: 1 }} />
-
-          <FadeSection delay={400}>
-            <Section title="Certifications" delay="stagger-5">
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                {cv.certifications.map((cert, i) => (
-                  <span key={i} style={{ background: 'var(--accent-soft)', color: 'var(--accent)', border: '1px solid #8c00ff', borderRadius: 4, padding: '16px 40px', fontSize: 20, fontWeight: 500 }}>
-                    {cert}
-                  </span>
-                ))}
+        {/* Education */}
+        <FadeSection delay={300}>
+          <Section title="Education" delay="stagger-5">
+            {cv.education.map((edu, i) => (
+              <div key={i}>
+                <h3 style={{ fontSize: 15, fontWeight: 500, color: 'var(--ink)', marginBottom: 4 }}>{edu.degree}</h3>
+                <p style={{ fontSize: 13, color: 'var(--accent)', marginBottom: 2 }}>{edu.institution}</p>
+                <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--ink-faint)' }}>{edu.period} · {edu.location}</p>
               </div>
-            </Section>
-          </FadeSection>
-        </div>
+            ))}
+          </Section>
+        </FadeSection>
 
       </div>
 
