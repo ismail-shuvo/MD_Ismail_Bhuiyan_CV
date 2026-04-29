@@ -8,7 +8,7 @@ import FadeSection from '@/components/FadeSection'
 async function getCV(): Promise<CVData> {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
-    const res = await fetch(`${baseUrl}/api/cv`, { next: { revalidate: 60 } })
+const res = await fetch(`${baseUrl}/api/cv`, { cache: 'no-store' })
     if (!res.ok) return defaultCV
     return res.json()
   } catch {
