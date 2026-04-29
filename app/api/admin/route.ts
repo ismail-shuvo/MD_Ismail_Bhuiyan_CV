@@ -1,5 +1,5 @@
-import { createClient } from '@supabase/supabase-js'
 import { NextRequest, NextResponse } from 'next/server'
+import { defaultCV } from '@/lib/defaultCV'
 
 export async function POST(req: NextRequest) {
   const authHeader = req.headers.get('authorization')
@@ -11,33 +11,58 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json()
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
-    )
+    if (body._check) return NextResponse.json({ ok: true })
 
-    const { data: existing } = await supabase
-      .from('cv_data')
-      .select('id')
-      .limit(1)
-      .single()
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+    const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!
 
-    let result
-    if (existing?.id) {
-      result = await supabase
-        .from('cv_data')
-        .update({ ...body, updated_at: new Date().toISOString() })
-        .eq('id', existing.id)
+    // Check if row exists
+    const getRes = await fetch(`${supabaseUrl}/rest/v1/cv_data?select=id&limit=1`, {
+      headers: {
+        'apikey': serviceKey,
+        'Authorization': `Bearer ${serviceKey}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    const existing = await getRes.json()
+
+    const payload = { ...body, updated_at: new Date().toISOString() }
+    delete payload._check
+
+    let res
+    if (existing?.length > 0) {
+      res = await fetch(`${supabaseUrl}/rest/v1/cv_data?id=eq.${existing[0].id}`, {
+        method: 'PATCH',
+        headers: {
+          'apikey': serviceKey,
+          'Authorization': `Bearer ${serviceKey}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify(payload)
+      })
     } else {
-      result = await supabase
-        .from('cv_data')
-        .insert([{ ...body, updated_at: new Date().toISOString() }])
+      res = await fetch(`${supabaseUrl}/rest/v1/cv_data`, {
+        method: 'POST',
+        headers: {
+          'apikey': serviceKey,
+          'Authorization': `Bearer ${serviceKey}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify(payload)
+      })
     }
 
-    if (result.error) throw result.error
+    if (!res.ok) {
+      const err = await res.text()
+      throw new Error(err)
+    }
+
     return NextResponse.json({ success: true })
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : 'Unknown error'
+    console.error('Admin API error:', message)
     return NextResponse.json({ error: message }, { status: 500 })
   }
 }
