@@ -34,38 +34,48 @@ export default async function Home() {
       <div style={{ maxWidth: '100%', margin: '0 auto', padding: '3rem 4rem 6rem' }}>
 
         {/* Hero */}
-        <section className="animate-fade-up stagger-1" style={{ marginBottom: '4rem', paddingBottom: '3rem', borderBottom: '1px solid var(--border)' }}>
-          <p style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--accent)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '1rem' }}>
-            CV / Résumé
-          </p>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(3.5rem, 8vw, 6rem)', lineHeight: 1.05, color: 'var(--ink)', marginBottom: '0.75rem' }}>
-            {cv.name}
-          </h1>
-          <p style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 'clamp(1.2rem, 3vw, 1.8rem)', color: 'var(--accent)', marginBottom: '2rem' }}>
-            {cv.title}
-          </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem', marginBottom: '2rem' }}>
-            {[
-              { label: 'Email', value: cv.email, href: `mailto:${cv.email}` },
-              { label: 'Phone', value: cv.phone, href: `tel:${cv.phone}` },
-              { label: 'LinkedIn', value: 'linkedin.com/in/ismail-shuvo', href: cv.linkedin },
-              { label: 'Location', value: cv.address, href: null },
-            ].map(item => (
-              <div key={item.label}>
-                <p style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--ink-faint)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 2 }}>{item.label}</p>
-                {item.href ? (
-                  <a href={item.href} style={{ fontSize: 13, color: 'var(--ink)', textDecoration: 'none', borderBottom: '1px solid var(--border)' }}>
-                    {item.value}
-                  </a>
-                ) : (
-                  <p style={{ fontSize: 13, color: 'var(--ink)' }}>{item.value}</p>
-                )}
-              </div>
-            ))}
+        <section className="animate-fade-up stagger-1" style={{ marginBottom: '4rem', paddingBottom: '3rem', borderBottom: '1px solid var(--border)', display: 'flex', gap: '3rem', alignItems: 'flex-start' }}>
+          
+          {/* Photo */}
+          <div style={{ flexShrink: 0 }}>
+            <img src="/profile.jpg" alt={cv.name}
+              style={{ width: 160, height: 160, borderRadius: '50%', objectFit: 'cover', border: '3px solid var(--accent-soft)', display: 'block' }} />
           </div>
-          <p style={{ fontSize: 16, color: 'var(--ink-muted)', lineHeight: 1.8, maxWidth: '100%' }}>
-            {cv.about}
-          </p>
+
+          {/* Text */}
+          <div style={{ flex: 1 }}>
+            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--accent)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '1rem' }}>
+              CV / Résumé
+            </p>
+            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(3.5rem, 8vw, 6rem)', lineHeight: 1.05, color: 'var(--ink)', marginBottom: '0.75rem' }}>
+              {cv.name}
+            </h1>
+            <p style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 'clamp(1.2rem, 3vw, 1.8rem)', color: 'var(--accent)', marginBottom: '2rem' }}>
+              {cv.title}
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem', marginBottom: '2rem' }}>
+              {[
+                { label: 'Email', value: cv.email, href: `mailto:${cv.email}` },
+                { label: 'Phone', value: cv.phone, href: `tel:${cv.phone}` },
+                { label: 'LinkedIn', value: 'linkedin.com/in/ismail-shuvo', href: cv.linkedin },
+                { label: 'Location', value: cv.address, href: null },
+              ].map(item => (
+                <div key={item.label}>
+                  <p style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--ink-faint)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 2 }}>{item.label}</p>
+                  {item.href ? (
+                    <a href={item.href} style={{ fontSize: 13, color: 'var(--ink)', textDecoration: 'none', borderBottom: '1px solid var(--border)' }}>
+                      {item.value}
+                    </a>
+                  ) : (
+                    <p style={{ fontSize: 13, color: 'var(--ink)' }}>{item.value}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+            <p style={{ fontSize: 16, color: 'var(--ink-muted)', lineHeight: 1.8 }}>
+              {cv.about}
+            </p>
+          </div>
         </section>
 
         {/* Skills & Certifications */}
