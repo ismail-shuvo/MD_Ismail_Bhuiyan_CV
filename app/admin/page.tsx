@@ -132,9 +132,9 @@ export default function AdminPage() {
                 </Field>
               </Card>
             ))}
-            <button className="btn-secondary" onClick={() => setCV({...cv, experiences: [...cv.experiences, { role: '', company: '', period: '', location: '', bullets: [] }]})}>
-              + Add experience
-            </button>
+           <button className="btn-secondary" onClick={() => setCV({...cv, experiences: [{ role: '', company: '', period: '', location: '', bullets: [] }, ...cv.experiences]})}>
+  + Add experience
+</button>
           </div>
         )}
 
@@ -156,9 +156,10 @@ export default function AdminPage() {
                 </Field>
               </Card>
             ))}
-            <button className="btn-secondary" onClick={() => setCV({...cv, projects: [...cv.projects, { title: '', period: '', description: '', bullets: [], link: '' }]})}>
-              + Add project
-            </button>
+          // Projects
+<button className="btn-secondary" onClick={() => setCV({...cv, projects: [{ title: '', period: '', description: '', bullets: [], link: '' }, ...cv.projects]})}>
+  + Add project
+</button>
           </div>
         )}
 
@@ -175,9 +176,10 @@ export default function AdminPage() {
                 </Grid>
               </Card>
             ))}
-            <button className="btn-secondary" onClick={() => setCV({...cv, education: [...cv.education, { degree: '', institution: '', period: '', location: '' }]})}>
-              + Add education
-            </button>
+          // Education
+<button className="btn-secondary" onClick={() => setCV({...cv, education: [{ degree: '', institution: '', period: '', location: '' }, ...cv.education]})}>
+  + Add education
+</button>
 
             <Card title="Certifications">
               <Field label="One per line">
