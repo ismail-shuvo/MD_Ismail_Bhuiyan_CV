@@ -8,7 +8,7 @@ import FadeSection from '@/components/FadeSection'
 async function getCV(): Promise<CVData> {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
-const res = await fetch(`${baseUrl}/api/cv`, { cache: 'no-store' })
+    const res = await fetch(`${baseUrl}/api/cv`, { cache: 'no-store' })
     if (!res.ok) return defaultCV
     return res.json()
   } catch {
@@ -24,9 +24,7 @@ export default async function Home() {
       {/* Header */}
       <header style={{ borderBottom: '1px solid var(--border)', background: 'var(--paper)' }} className="no-print sticky top-0 z-10">
         <div style={{ maxWidth: '100%', margin: '0 auto', padding: '0 4rem', height: 52, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-
-  <GlitchName name={cv.name} />
-
+          <GlitchName name={cv.name} />
           <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
             <PrintButton />
           </div>
@@ -35,18 +33,18 @@ export default async function Home() {
 
       <div style={{ maxWidth: '100%', margin: '0 auto', padding: '3rem 4rem 6rem' }}>
 
-     {/* Hero */}
-<section className="animate-fade-up stagger-1" style={{ marginBottom: '4rem', paddingBottom: '3rem', borderBottom: '1px solid var(--border)' }}>
-  <p style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--accent)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '1rem' }}>
-    CV / Résumé
-  </p>
-  <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(3.5rem, 8vw, 6rem)', lineHeight: 1.05, color: 'var(--ink)', marginBottom: '0.75rem' }}>
-    {cv.name}
-  </h1>
-  <p style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 'clamp(1.2rem, 3vw, 1.8rem)', color: 'var(--accent)', marginBottom: '2rem' }}>
-    {cv.title}
-  </p>
-<div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem', marginBottom: '2rem' }}>
+        {/* Hero */}
+        <section className="animate-fade-up stagger-1" style={{ marginBottom: '4rem', paddingBottom: '3rem', borderBottom: '1px solid var(--border)' }}>
+          <p style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--accent)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '1rem' }}>
+            CV / Résumé
+          </p>
+          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(3.5rem, 8vw, 6rem)', lineHeight: 1.05, color: 'var(--ink)', marginBottom: '0.75rem' }}>
+            {cv.name}
+          </h1>
+          <p style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 'clamp(1.2rem, 3vw, 1.8rem)', color: 'var(--accent)', marginBottom: '2rem' }}>
+            {cv.title}
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem', marginBottom: '2rem' }}>
             {[
               { label: 'Email', value: cv.email, href: `mailto:${cv.email}` },
               { label: 'Phone', value: cv.phone, href: `tel:${cv.phone}` },
@@ -65,13 +63,12 @@ export default async function Home() {
               </div>
             ))}
           </div>
-
           <p style={{ fontSize: 16, color: 'var(--ink-muted)', lineHeight: 1.8, maxWidth: '100%' }}>
-  {cv.about}
-</p>
+            {cv.about}
+          </p>
         </section>
 
-{/* Skills */}
+        {/* Skills */}
         <FadeSection delay={0}>
           <Section title="Skills" delay="stagger-2">
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
@@ -110,57 +107,65 @@ export default async function Home() {
           </Section>
         </FadeSection>
 
-        
         {/* Projects */}
-        <Section title="Projects" delay="stagger-4">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-            {cv.projects.map((proj, i) => (
-              <div key={i} style={{ background: 'var(--paper-warm)', border: '1px solid var(--border)', borderRadius: 8, padding: '1.25rem 1.5rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 4, marginBottom: 4 }}>
-                  <h3 style={{ fontSize: 15, fontWeight: 500, color: 'var(--ink)' }}>{proj.title}</h3>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--ink-faint)' }}>{proj.period}</span>
+        <FadeSection delay={200}>
+          <Section title="Projects" delay="stagger-4">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+              {cv.projects.map((proj, i) => (
+                <div key={i} style={{ background: 'var(--paper-warm)', border: '1px solid var(--border)', borderRadius: 8, padding: '1.25rem 1.5rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 4, marginBottom: 4 }}>
+                    <h3 style={{ fontSize: 15, fontWeight: 500, color: 'var(--ink)' }}>{proj.title}</h3>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--ink-faint)' }}>{proj.period}</span>
+                  </div>
+                  <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--accent)', marginBottom: 12 }}>{proj.description}</p>
+                  <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 5, marginBottom: proj.link ? 12 : 0 }}>
+                    {proj.bullets.map((b, j) => (
+                      <li key={j} style={{ fontSize: 13, color: 'var(--ink-muted)', paddingLeft: 14, position: 'relative' }}>
+                        <span style={{ position: 'absolute', left: 0, color: 'var(--accent)' }}>›</span>
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                  {proj.link && (
+                    <a href={proj.link} target="_blank" rel="noopener noreferrer"
+                      style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--accent)', textDecoration: 'none' }}>
+                      View project →
+                    </a>
+                  )}
                 </div>
-                <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--accent)', marginBottom: 12 }}>{proj.description}</p>
-                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 5, marginBottom: proj.link ? 12 : 0 }}>
-                  {proj.bullets.map((b, j) => (
-                    <li key={j} style={{ fontSize: 13, color: 'var(--ink-muted)', paddingLeft: 14, position: 'relative' }}>
-                      <span style={{ position: 'absolute', left: 0, color: 'var(--accent)' }}>›</span>
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-                {proj.link && (
-                  <a href={proj.link} target="_blank" rel="noopener noreferrer"
-                    style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--accent)', textDecoration: 'none' }}>
-                    View project →
-                  </a>
-                )}
-              </div>
-            ))}
-          </div>
-        </Section>
-
-        {/* Education & Certs */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
-          <Section title="Education" delay="stagger-5">
-            {cv.education.map((edu, i) => (
-              <div key={i}>
-                <h3 style={{ fontSize: 15, fontWeight: 500, color: 'var(--ink)', marginBottom: 4 }}>{edu.degree}</h3>
-                <p style={{ fontSize: 13, color: 'var(--accent)', marginBottom: 2 }}>{edu.institution}</p>
-                <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--ink-faint)' }}>{edu.period} · {edu.location}</p>
-              </div>
-            ))}
-          </Section>
-
-          <Section title="Certifications" delay="stagger-5">
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-              {cv.certifications.map((cert, i) => (
-                <span key={i} style={{ background: 'var(--accent-soft)', color: 'var(--accent)', border: '1px solid #e8c4bb', borderRadius: 4, padding: '4px 10px', fontSize: 13, fontWeight: 500 }}>
-                  {cert}
-                </span>
               ))}
             </div>
           </Section>
+        </FadeSection>
+
+        {/* Education & Certs */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1px 1fr', gap: '0 3rem' }}>
+          <FadeSection delay={300}>
+            <Section title="Education" delay="stagger-5">
+              {cv.education.map((edu, i) => (
+                <div key={i}>
+                  <h3 style={{ fontSize: 15, fontWeight: 500, color: 'var(--ink)', marginBottom: 4 }}>{edu.degree}</h3>
+                  <p style={{ fontSize: 13, color: 'var(--accent)', marginBottom: 2 }}>{edu.institution}</p>
+                  <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--ink-faint)' }}>{edu.period} · {edu.location}</p>
+                </div>
+              ))}
+            </Section>
+          </FadeSection>
+
+          {/* Vertical divider */}
+          <div style={{ background: 'var(--border)', width: 1 }} />
+
+          <FadeSection delay={400}>
+            <Section title="Certifications" delay="stagger-5">
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                {cv.certifications.map((cert, i) => (
+                  <span key={i} style={{ background: 'var(--accent-soft)', color: 'var(--accent)', border: '1px solid #8c00ff', borderRadius: 4, padding: '16px 40px', fontSize: 20, fontWeight: 500 }}>
+                    {cert}
+                  </span>
+                ))}
+              </div>
+            </Section>
+          </FadeSection>
         </div>
 
       </div>
@@ -174,9 +179,9 @@ export default async function Home() {
   )
 }
 
-function Section({ title, children, delay }: { title: string; children: React.ReactNode; delay: string }) {
+function Section({ title, children, delay }: { title: string; children: React.ReactNode; delay?: string }) {
   return (
-    <section className={`animate-fade-up ${delay}`} style={{ marginBottom: '3.5rem' }}>
+    <section className={`animate-fade-up ${delay || ''}`} style={{ marginBottom: '3.5rem' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: '1.5rem' }}>
         <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--ink-faint)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
           {title}
