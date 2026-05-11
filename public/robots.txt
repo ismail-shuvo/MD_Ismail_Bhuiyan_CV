@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+User-agent: Googlebot
+Disallow: /admin
+
+Sitemap: https://md-ismail-bhuiyan-cv.vercel.app/sitemap.xml
