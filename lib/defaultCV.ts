@@ -9,12 +9,16 @@ export const defaultCV: CVData = {
   address: "57/3 Matikata, Cantt, Dhaka, 1206, Bangladesh",
   about: "DevOps & Linux System Administrator with 5 years of experience in automation, CI/CD, containerization, and secure infrastructure management. Skilled in designing and maintaining DevOps, DevSecOps, and MLOps pipelines using Jenkins, GitHub Actions, Docker, Kubernetes, Prometheus, Grafana, MLflow, and security scanning tools like Bandit, Docker Scout, and DefectDojo.",
   skills: [
-    "Linux System Administration", "Docker", "Kubernetes", "Jenkins",
-    "GitHub Actions", "GitLab CI", "Terraform", "Ansible",
-    "Prometheus", "Grafana", "ELK Stack", "MLflow",
-    "Nginx", "Apache", "Python", "Bash",
-    "MySQL", "MongoDB", "Redis", "PostgreSQL",
-    "DevSecOps", "SAST/DAST", "Bandit", "Docker Scout", "DefectDojo"
+    "Cloud Platforms & Architecture: AWS (SAA-C03) · DigitalOcean (DOKS, Droplets) · Hetzner · Contabo · G-Core Labs · On-Premises Data Center Management",
+    "CI/CD & Infrastructure Automation: Jenkins · GitLab CI/CD · GitHub Actions · Terraform · Ansible · Bash · PowerShell · GitOps · Argo CD",
+    "Containers & Orchestration: Docker · Kubernetes (DOKS) · Docker Swarm · Helm · Argo CD · Headlamp · Container Registry & Image Management",
+    "Monitoring & Observability: Prometheus · Grafana · Elasticsearch · Logstash · Kibana (ELK Stack) · Elastic APM · OpenTelemetry · Centralized Logging",
+    "DevSecOps & Security: Bandit (SAST) · Docker Scout · DefectDojo · SonarQube · DAST Pipelines · Vulnerability Management · Firewall · SSL/TLS",
+    "MLOps & AI Infrastructure: MLflow · Jenkins-based ML Pipelines · Experiment Tracking · Containerized Model Deployment · MLOps Automation",
+    "Linux & Systems Administration: RHEL · Ubuntu · RHCE/RHCSA · Nginx · Apache · OpenVPN · oVirt · Open-E Storage",
+    "Databases & Storage: PostgreSQL · MySQL · MongoDB · Redis · Apache Cassandra · MinIO · Database Administration · Backup & Recovery · PgBouncer",
+    "Networking & Infrastructure: TCP/IP · DNS · DHCP · Load Balancing · VPN · Firewalls · IDS/IPS · Network Troubleshooting · Reverse Proxy · High Availability",
+    "Programming & Version Control: Python · Bash · PowerShell · Git · GitHub · GitLab"
   ],
   experiences: [
     {

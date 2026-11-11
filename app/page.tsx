@@ -82,10 +82,16 @@ export default async function Home() {
         <FadeSection delay={0}>
           <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 1px minmax(0, 1fr)', gap: '0 3rem' }}>
             <Section title="Skills" delay="stagger-2">
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                {cv.skills.map((skill, i) => (
-                  <span key={i} className="tag">{skill}</span>
-                ))}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                {cv.skills.map((skill, i) => {
+                  const [category, ...rest] = skill.split(': ')
+                  const items = rest.join(': ')
+                  return (
+                    <div key={i} style={{ fontSize: 13, color: 'var(--ink-muted)', lineHeight: 1.6 }}>
+                      <span style={{ fontWeight: 600, color: 'var(--ink)' }}>{category}:</span>{' '}{items}
+                    </div>
+                  )
+                })}
               </div>
             </Section>
 
