@@ -20,7 +20,7 @@ export default async function Home() {
   const cv = await getCV()
 
   return (
-    <main style={{ background: 'var(--paper)', minHeight: '100vh', maxWidth: '1100px', margin: '0 auto' }}>
+    <main style={{ background: 'var(--paper)', minHeight: '100vh' }}>
       {/* Header */}
       <header style={{ borderBottom: '1px solid var(--border)', background: 'var(--paper)' }} className="no-print sticky top-0 z-10">
         <div style={{ maxWidth: '100%', margin: '0 auto', padding: '0 4rem', height: 52, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -80,7 +80,7 @@ export default async function Home() {
 
         {/* Skills & Certifications */}
         <FadeSection delay={0}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1px 1fr', gap: '0 3rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 1px minmax(0, 1fr)', gap: '0 3rem' }}>
             <Section title="Skills" delay="stagger-2">
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
                 {cv.skills.map((skill, i) => (
