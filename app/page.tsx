@@ -23,7 +23,7 @@ export default async function Home() {
     <main style={{ background: 'var(--paper)', minHeight: '100vh' }}>
       {/* Header */}
       <header style={{ borderBottom: '1px solid var(--border)', background: 'var(--paper)' }} className="no-print sticky top-0 z-10">
-        <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 4rem', height: 52, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ maxWidth: '100%', margin: '0 auto', padding: '0 4rem', height: 52, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <GlitchName name={cv.name} />
           <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
             <PrintButton />
@@ -31,7 +31,7 @@ export default async function Home() {
         </div>
       </header>
 
-      <div style={{ maxWidth: '900px', margin: '0 auto', padding: '3rem 4rem 6rem' }}>
+      <div style={{ maxWidth: '100%', margin: '0 auto', padding: '3rem 4rem 6rem' }}>
 
         {/* Hero */}
         <section className="animate-fade-up stagger-1" style={{ marginBottom: '4rem', paddingBottom: '3rem', borderBottom: '1px solid var(--border)', display: 'flex', gap: '3rem', alignItems: 'flex-start' }}>
