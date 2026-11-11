@@ -20,7 +20,7 @@ export default async function Home() {
   const cv = await getCV()
 
   return (
-    <main style={{ background: 'var(--paper)', minHeight: '100vh' }}>
+    <main style={{ background: 'var(--paper)', minHeight: '100vh', maxWidth: '1100px', margin: '0 auto' }}>
       {/* Header */}
       <header style={{ borderBottom: '1px solid var(--border)', background: 'var(--paper)' }} className="no-print sticky top-0 z-10">
         <div style={{ maxWidth: '100%', margin: '0 auto', padding: '0 4rem', height: 52, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
